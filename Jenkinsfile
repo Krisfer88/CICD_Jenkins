@@ -1,8 +1,8 @@
+def tiempo = "lluvioso"
 pipeline {
     agent any
-    
     stages {
-        stage('Check Day of Week') {
+        stage('Comprobar día de la semana') {
             steps {
                 script {
                     def currentDate = new Date()
@@ -12,7 +12,7 @@ pipeline {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
                     } else if (dayOfWeek == 'miercoles') {
                         def weather = obtenerEstadoDelTiempo()
-                        echo "El estado del tiempo actual es: ${weather}"
+                        echo "El estado del tiempo actual es: " + tiempo
                     } else if (dayOfWeek == 'jueves') {
                         checkout scm
                         echo "Repositorio clonado y rama principal obtenida"
