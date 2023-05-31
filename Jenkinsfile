@@ -1,67 +1,25 @@
-def fecha = new Date()
-def formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-def fechaFormateda = formatoFecha.format(fecha)
-pipeline
-{
+def currentDate = new Date()
+def dayOfWeek = currentDate.format('EEEE', new Locale('es', 'ES'))
+def tiempo = "Soleado"
+pipeline {
     agent any
-    environment
-    {
-        int clima_actual = 21
-        int poblacion_actual = 80000
-        neto = 0.8
-        
-        
-    }
-    stages
-    {
-        stage("Bienvenido")
-        {
-            steps
-            {
-                script
-                {
-                def saludo = "Bienvenido la fecha actual es:" + fechaFormateda
-                def contenido = saludo
-                println saludo
-                }
-            }
-        }
-        
-        stage("Información relevante sobre tu ciudad actual")
-        {
-            steps
-            {
-                script
-                {
-                    def info = "El clima actual de tu ciudad es de " + clima_actual + " grados"
-                    def poblacion = "La población actual es " + poblacion_actual + " habitantes"
-                    println info
-                    println poblacion
-                }
-            }
-        }
-        
-        stage("Población Neta")
-        {
-            steps
-            {
-                script
-                {
-                    poblacion_neta = poblacion_actual.toInteger()  * neto.toDouble()
-                    println "La población neta es " + poblacion_neta 
-                }
-            }
-        }
-        
-        stage("Generción fichero salida")
-        {
-            steps
-            {
-                script
-                {
-                    def contenido = "El clima actual de tu ciudad es de " + clima_actual + " grados" + " con poblacion actual de " + poblacion_actual + "\nLa poblacion neta es " + poblacion_neta
-                    writeFile(file: "ejercicio_2.txt", text:contenido)
-                    println contenido
+    stages {
+        stage('Check Day of Week') {
+            steps {
+                script {
+                   
+                    if (dayOfWeek == 'martes') {
+                        echo "El usuario ejecutando el PPL es ${env.USERNAME}"
+                    } else if (dayOfWeek == 'miercoles') {
+                        echo "El estado del tiempo actual es: " + Soleado
+                    } else if (dayOfWeek == 'jueves') {
+                        checkout scm
+                        echo "Repositorio clonado y rama principal obtenida"
+                    } else if (dayOfWeek == 'viernes') {
+                        echo "No se realizará ninguna acción hoy (viernes)"
+                    } else if (dayOfWeek == 'lunes') {
+                        echo "No se realizará ninguna acción hoy (lunes)"
+                    }
                 }
             }
         }
