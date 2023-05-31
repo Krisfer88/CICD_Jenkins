@@ -11,7 +11,6 @@ pipeline {
                     if (dayOfWeek == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
                     } else if (dayOfWeek == 'miercoles') {
-                        def weather = obtenerEstadoDelTiempo()
                         echo "El estado del tiempo actual es: " + tiempo
                     } else if (dayOfWeek == 'jueves') {
                         checkout scm
