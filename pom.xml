@@ -12,9 +12,9 @@
 	<artifactId>Cristian</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Cristian</name>
-	<description>Ejemplo de Maven y Jenkins</description>
+	<description>Ejercicio 4</description>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -23,10 +23,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
-			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
