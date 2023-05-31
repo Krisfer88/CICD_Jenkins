@@ -1,28 +1,21 @@
-import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.time.LocalDate
+import java.time.DayOfWeek
 
-def obtenerDiaActual() {
-    // Obtener una instancia del calendario actual
-    def calendario = Calendar.getInstance()
-    
-    // Obtener el día del mes actual
-    def dia = calendario.get(Calendar.DAY_OF_MONTH)
-    
-    // Obtener el mes actual (ten en cuenta que en Calendar el mes comienza en 0)
-    def mes = calendario.get(Calendar.MONTH) + 1
-    
-    // Obtener el año actual
-    def anio = calendario.get(Calendar.YEAR)
-    
-    // Formatear la fecha como una cadena
-    def formato = new SimpleDateFormat("dd/MM/yyyy")
-    def fechaActual = formato.format(calendario.getTime())
-    
-    // Imprimir la fecha actual
-    println "Día actual: $dia"
-    println "Mes actual: $mes"
-    println "Año actual: $anio"
-    println "Fecha actual: $fechaActual"
-}
+// Obtener la fecha actual
+def fechaActual = LocalDate.now()
 
-obtenerDiaActual()
+// Obtener el día de la semana de la fecha actual
+def diaDeLaSemana = fechaActual.getDayOfWeek()
+
+// Imprimir el día de la semana
+println "Día de la semana: ${diaDeLaSemana}"
+
+// Obtener el nombre completo del día de la semana
+def nombreCompleto = diaDeLaSemana.getDisplayName(DayOfWeek.FULL, Locale.getDefault())
+
+// Obtener el nombre abreviado del día de la semana
+def nombreAbreviado = diaDeLaSemana.getDisplayName(DayOfWeek.SHORT, Locale.getDefault())
+
+// Imprimir los nombres
+println "Nombre completo del día de la semana: ${nombreCompleto}"
+println "Nombre abreviado del día de la semana: ${nombreAbreviado}"
