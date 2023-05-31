@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     def currentDate = new Date()
-                    def currentDay = new.Date()
+                    def currentDay = new Date()
                     def dayOfWeek = currentDate.format(java.lang.String, java.util.TimeZone))
                     
                     if (dayOfWeek == 'martes') {
