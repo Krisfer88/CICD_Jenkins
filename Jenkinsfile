@@ -1,3 +1,7 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 pipeline {
     agent any
     
@@ -5,20 +9,23 @@ pipeline {
         stage('Check Day of Week') {
             steps {
                 script {
-                    def currentDate = new Date()
-                    def dayOfWeek = currentDate.format('EEEE', new Locale('es', 'ES'))
+                def date = new Date()
+                def format = new SimpleDateFormat("EEEE", new Locale("es", "ES"))
+                def formattedDate = format.format(date)
+
+                println formattedDate
                     
-                    if (dayOfWeek == 'martes') {
+                    if (formattedDate == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
-                    } else if (dayOfWeek == 'miercoles') {
+                    } else if (formattedDate == 'miercoles') {
                         def weather = obtenerEstadoDelTiempo()
                         echo "El estado del tiempo actual es: ${weather}"
-                    } else if (dayOfWeek == 'jueves') {
+                    } else if (formattedDate == 'jueves') {
                         checkout scm
                         echo "Repositorio clonado y rama principal obtenida"
-                    } else if (dayOfWeek == 'viernes') {
+                    } else if (formattedDate == 'viernes') {
                         echo "No se realizará ninguna acción hoy (viernes)"
-                    } else if (dayOfWeek == 'lunes') {
+                    } else if (formattedDate == 'lunes') {
                         echo "No se realizará ninguna acción hoy (lunes)"
                     }
                 }
