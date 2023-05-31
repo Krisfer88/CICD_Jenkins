@@ -9,9 +9,9 @@ pipeline {
         stage('Check Day of Week') {
             steps {
                 script {
-                def date = new Date()
-                def format = new SimpleDateFormat("EEEE", new Locale("es", "ES"))
-                def formattedDate = format.format(date)
+                 date = new Date()
+                 format = new SimpleDateFormat("EEEE", new Locale("es", "ES"))
+                 formattedDate = format.format(date)
                     
                     if (formattedDate == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
