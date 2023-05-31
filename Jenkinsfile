@@ -15,7 +15,7 @@ pipeline {
                     
                     if (${formattedDate} == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
-                    } else if (formattedDate == 'miércoles') {
+                    } else if (${formattedDate} == 'miércoles') {
                         def weather = "Soleado"
                         echo "El estado del tiempo actual es: ${weather}"
                     } else if (formattedDate == 'jueves') {
