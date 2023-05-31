@@ -12,8 +12,10 @@ pipeline {
                  date = new Date()
                  format = new SimpleDateFormat("EEEE", new Locale("es", "ES"))
                  formattedDate = format.format(date)
-                    echo "El dia de hoy es " + formattedDate + date
-                    if (formattedDate == 'martes') {
+                    echo "El dia de hoy es " + formattedDate
+                    if (formattedDate == "miercoles"){
+                        echo "Conchatumadre " + formattedDate
+                    } if (formattedDate == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
                     } else if (formattedDate == 'miércoles') {
                         def weather = "Soleado"
