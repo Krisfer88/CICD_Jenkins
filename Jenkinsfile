@@ -6,7 +6,8 @@ pipeline {
             steps {
                 script {
                     def currentDate = new Date()
-                    def dayOfWeek = currentDate.format('EEEE', new Locale('es', 'ES'))
+                    def currentDay = new.Date()
+                    def dayOfWeek = currentDate.format(java.lang.String, java.util.TimeZone))
                     
                     if (dayOfWeek == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
