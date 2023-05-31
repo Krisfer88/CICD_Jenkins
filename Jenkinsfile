@@ -31,10 +31,4 @@ pipeline {
         }
     }
 }
-
-def obtenerEstadoDelTiempo() {
-    // Aquí puedes incluir tu lógica para obtener el estado del tiempo actual
-    // Por ejemplo, puedes hacer una llamada a una API de clima
-    
-    return "soleado"
 }
