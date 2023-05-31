@@ -1,36 +1,28 @@
-pipeline {
-    agent any
+import java.text.SimpleDateFormat
+import java.util.Calendar
+
+def obtenerDiaActual() {
+    // Obtener una instancia del calendario actual
+    def calendario = Calendar.getInstance()
     
-    stages {
-        stage('Check Day of Week') {
-            steps {
-                script {
-                    def currentDay = new Date()
-                    //def dayOfWeek = currentDate.format(java.lang.String, java.util.TimeZone)
-                    println currentDay
-                    
-                    if (dayOfWeek == 'martes') {
-                        echo "El usuario ejecutando el PPL es ${env.USERNAME}"
-                    } else if (dayOfWeek == 'miercoles') {
-                        def weather = obtenerEstadoDelTiempo()
-                        echo "El estado del tiempo actual es: ${weather}"
-                    } else if (dayOfWeek == 'jueves') {
-                        checkout scm
-                        echo "Repositorio clonado y rama principal obtenida"
-                    } else if (dayOfWeek == 'viernes') {
-                        echo "No se realizará ninguna acción hoy (viernes)"
-                    } else if (dayOfWeek == 'lunes') {
-                        echo "No se realizará ninguna acción hoy (lunes)"
-                    }
-                }
-            }
-        }
-    }
+    // Obtener el día del mes actual
+    def dia = calendario.get(Calendar.DAY_OF_MONTH)
+    
+    // Obtener el mes actual (ten en cuenta que en Calendar el mes comienza en 0)
+    def mes = calendario.get(Calendar.MONTH) + 1
+    
+    // Obtener el año actual
+    def anio = calendario.get(Calendar.YEAR)
+    
+    // Formatear la fecha como una cadena
+    def formato = new SimpleDateFormat("dd/MM/yyyy")
+    def fechaActual = formato.format(calendario.getTime())
+    
+    // Imprimir la fecha actual
+    println "Día actual: $dia"
+    println "Mes actual: $mes"
+    println "Año actual: $anio"
+    println "Fecha actual: $fechaActual"
 }
 
-def obtenerEstadoDelTiempo() {
-    // Aquí puedes incluir tu lógica para obtener el estado del tiempo actual
-    // Por ejemplo, puedes hacer una llamada a una API de clima
-    
-    return "soleado"
-}
+obtenerDiaActual()
