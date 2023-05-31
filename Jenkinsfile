@@ -12,7 +12,7 @@ pipeline {
                  date = new Date()
                  format = new SimpleDateFormat("EEEE", new Locale("es", "ES"))
                  formattedDate = format.format(date)
-                    println formattedDate
+                    echo "El día de hoy es " + formattedDate
                     if (formattedDate == 'martes') {
                         echo "El usuario ejecutando el PPL es ${env.USERNAME}"
                     } else if (formattedDate == 'miércoles') {
