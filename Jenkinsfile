@@ -27,8 +27,10 @@ pipeline
                     }
                     if (diaSemana == "jueves")
                     {
-                        echo "Clonado del repo de la rama main "
-                        git branch: "main", url: "https://github.com/Krisfer88/CICD_Jenkins.git"
+                        //echo "Clonado del repo de la rama main "
+                        //git branch: "main", url: "https://github.com/Krisfer88/CICD_Jenkins.git"
+                        def tiempo = "Soleado"
+                        echo "El tiempo actual es: " + tiempo
                     }
                     if (diaSemana == "lunes")
                     {
