@@ -1,69 +1,55 @@
-def fecha = new Date()
-def formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-def fechaFormateda = formatoFecha.format(fecha)
+import java.text.SimpleDateFormat
+def fechaActual = new Date()
+def formato = new SimpleDateFormat("EEEE", new Locale("es"))
+def diaSemana = formato.format(fechaActual)
+
 pipeline
 {
     agent any
-    environment
+    tools
     {
-        int clima_actual = 21
-        int poblacion_actual = 80000
-        neto = 0.8
-        
-        
-    }
+        maven 'Maven'
+        jdk 'JAVA'
+    }    
     stages
     {
-        stage("Bienvenido")
+        stage("Valicacion de dia de la semana para hacer acciones")
         {
             steps
             {
                 script
                 {
-                def saludo = "Bienvenido la fecha actual es:" + fechaFormateda
-                def contenido = saludo
-                println saludo
+                    echo "Hoy es el dia  "+ diaSemana
+                    if (diaSemana == "miercoles")
+                    {
+                        def tiempo = "Soleado"
+                        echo "El tiempo actual es: " + tiempo
+                    }
+                    if (diaSemana == "jueves")
+                    {
+                        echo "Clonado del repo de la rama main "
+                        git branch: "main", url: "https://github.com/Krisfer88/CICD_Jenkins.git"
+                    }
+                    if (diaSemana == "lunes")
+                    {
+                        echo "NO se hace un carajo"
+                    }
+                    if (diaSemana == "viérnes")
+                    {
+                        echo "NO se hace un carajo"
+                    }
+                    
                 }
+                
             }
         }
-        
-        stage("Informacion relevante sobre tu ciudad actual")
+    }
+    post
+    {
+        failure
         {
-            steps
-            {
-                script
-                {
-                    def info = "El clima actual de tu ciudad es de " + clima_actual + " grados"
-                    def poblacion = "La poblacion actual es " + poblacion_actual + " habitantes"
-                    println info
-                    println poblacion
-                }
-            }
-        }
-        
-        stage("Poblacion Neta")
-        {
-            steps
-            {
-                script
-                {
-                    poblacion_neta = poblacion_actual.toInteger()  * neto.toDouble()
-                    println "La población neta es " + poblacion_neta 
-                }
-            }
-        }
-        
-        stage("Genercion fichero salida")
-        {
-            steps
-            {
-                script
-                {
-                    def contenido = "El clima actual de tu ciudad es de " + clima_actual + " grados" + " con poblacion actual de " + poblacion_actual + "\nLa poblacion neta es " + poblacion_neta
-                    writeFile(file: "ejercicio_2.txt", text:contenido)
-                    println contenido
-                }
-            }
+            echo "El pipeline ha fallado estrepitosamente"
+            mail to: 'c.curipallo.zapata@gmail.com', subject: "El pipeline ha fallado estrepitosamente", body:"El pipeline ha fallado estrepitosamente."
         }
     }
 }
