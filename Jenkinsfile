@@ -19,7 +19,7 @@ pipeline
             {
                 script
                 {
-                    echo "Hoy es el dia  "+ diaSemana
+                    echo "Hoy es dia: "+ diaSemana
                     if (diaSemana == "miercoles")
                     {
                         def tiempo = "Soleado"
@@ -34,7 +34,11 @@ pipeline
                     {
                         echo "NO se hace un carajo"
                     }
-                    if (diaSemana == "viérnes")
+                    if (diaSemana == "martes")
+                    {
+                        echo "El usuario que inicio el trabajo es ${env.USERNAME}"
+                    }
+                    if (diaSemana == "viernes")
                     {
                         echo "NO se hace un carajo"
                     }
