@@ -13,7 +13,6 @@ pipeline {
                  format = new SimpleDateFormat("EEEE", new Locale("es", "ES"))
                  formattedDate.to.string() = format.format(date)
                     echo "El dia de hoy es " + formattedDate
-                    echo "El puto valor del formatdate es:" + (Object)formattedDate).getClass().getSimpleName()
                     if (formattedDate == "miercoles"){
                         echo "Conchatumadre " + formattedDate
                     } else if (formattedDate == 'miércoles') {
