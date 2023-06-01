@@ -27,21 +27,21 @@ pipeline
             }
         }
         
-        stage("Información relevante sobre tu ciudad actual")
+        stage("Informacion relevante sobre tu ciudad actual")
         {
             steps
             {
                 script
                 {
                     def info = "El clima actual de tu ciudad es de " + clima_actual + " grados"
-                    def poblacion = "La población actual es " + poblacion_actual + " habitantes"
+                    def poblacion = "La poblacion actual es " + poblacion_actual + " habitantes"
                     println info
                     println poblacion
                 }
             }
         }
         
-        stage("Población Neta")
+        stage("Poblacion Neta")
         {
             steps
             {
@@ -53,7 +53,7 @@ pipeline
             }
         }
         
-        stage("Generción fichero salida")
+        stage("Genercion fichero salida")
         {
             steps
             {
